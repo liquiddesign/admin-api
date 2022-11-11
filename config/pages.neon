@@ -1,0 +1,4 @@
+pages:
+   mapping:
+   	  throw404: %productionMode%
+   types:

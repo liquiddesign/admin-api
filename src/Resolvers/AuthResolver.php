@@ -6,7 +6,9 @@ use Admin\Administrator;
 use GraphQL\Type\Definition\ResolveInfo;
 use LqGrAphi\GraphQLContext;
 use LqGrAphi\Resolvers\BaseResolver;
+use LqGrAphi\Resolvers\Exceptions\BadRequestException;
 use Nette\DI\Container;
+use Nette\Security\AuthenticationException;
 
 class AuthResolver extends BaseResolver
 {
@@ -26,8 +28,18 @@ class AuthResolver extends BaseResolver
 	 * @param \GraphQL\Type\Definition\ResolveInfo $resolveInfo
 	 * @return array<mixed>
 	 */
-	public function login(array $rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): string
+	public function adminLogin(array $rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): array
 	{
-		\bdump($this->admin);
+		if ($this->admin->isLoggedIn()) {
+			return $this->admin->getIdentity()->toArray();
+		}
+
+		try {
+			$this->admin->login($args['login'], $args['password'], \Admin\DB\Administrator::class);
+		} catch (AuthenticationException $e) {
+			throw new BadRequestException($e->getMessage());
+		}
+
+		return $this->admin->getIdentity()->toArray();
 	}
 }

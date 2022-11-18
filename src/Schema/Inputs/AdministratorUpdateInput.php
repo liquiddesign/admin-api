@@ -11,7 +11,7 @@ class AdministratorUpdateInput extends BaseInput
 	public function __construct(TypeRegister $typeRegister)
 	{
 		parent::__construct([
-			'fields' => $typeRegister->createInputFieldsFromClass(Administrator::class, forceAllOptional: true,),
+			'fields' => $typeRegister->createCrudUpdateInputFieldsFromClass(Administrator::class),
 		]);
 	}
 }

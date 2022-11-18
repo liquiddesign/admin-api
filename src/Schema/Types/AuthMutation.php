@@ -22,6 +22,10 @@ class AuthMutation extends BaseMutation
 						'login' => $typeRegister::nonNull($typeRegister::string()),
 						'password' => $typeRegister::nonNull($typeRegister::string()),
 					],
+					'description' => 'Returns Administrator if login is successful otherwise null',
+				],
+				"{$resolverName}AdminLogout" => [
+					'type' => $typeRegister::nonNull($typeRegister::boolean()),
 				],
 			],
 		]);

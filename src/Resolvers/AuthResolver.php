@@ -43,7 +43,9 @@ class AuthResolver extends BaseResolver
 			}
 
 			if ($account = $identity->getAccount()) {
-				$account->update(['tsLastLogin' => Carbon::now()->toDateTimeString(),]);
+				$account->update([
+					'tsLastActivity' => Carbon::now()->toDateTimeString(),
+				]);
 			}
 
 			return $identity->toArray();
@@ -60,7 +62,10 @@ class AuthResolver extends BaseResolver
 			}
 
 			if ($account = $identity->getAccount()) {
-				$account->update(['tsLastLogin' => Carbon::now()->toDateTimeString(),]);
+				$account->update([
+					'tsLastLogin' => Carbon::now()->toDateTimeString(),
+					'tsLastActivity' => Carbon::now()->toDateTimeString(),
+				]);
 			}
 
 			return $identity->toArray();
@@ -111,9 +116,7 @@ class AuthResolver extends BaseResolver
 		}
 
 		$adminArray = Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.uuid', $this->admin->getId()), $resolveInfo));
-
-		$account->update(['tsLastLogin' => Carbon::now()->toDateTimeString(),]);
-		$adminArray['tsLastLogin'] = $account->tsLastLogin;
+		$account->update(['tsLastActivity' => Carbon::now()->toDateTimeString(),]);
 
 		return $adminArray;
 	}

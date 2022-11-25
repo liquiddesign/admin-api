@@ -2,6 +2,7 @@
 
 namespace AdminApi\Schema\Types;
 
+use Admin\DB\Administrator;
 use LqGrAphi\Schema\BaseQuery;
 use LqGrAphi\Schema\TypeRegister;
 use Nette\DI\Container;
@@ -17,7 +18,7 @@ class AuthQuery extends BaseQuery
 		parent::__construct($container, [
 			'fields' => [
 				"{$resolverName}AdminIsLogged" => [
-					'type' => $typeRegister->getOutputType('adminIsLoggedOutput'),
+					'type' => $typeRegister->getOutputType(Administrator::class),
 				],
 			],
 		]);

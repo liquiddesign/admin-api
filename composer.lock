@@ -1830,16 +1830,16 @@
         },
         {
             "name": "liquiddesign/security",
-            "version": "v1.0.12",
+            "version": "v1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liquiddesign/security.git",
-                "reference": "3dd9a653b1b45cee5ed40568e92a9fa653f2d6c2"
+                "reference": "c0b6666d3c54cceef5cebbe46128cdbe9a3d9a04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liquiddesign/security/zipball/3dd9a653b1b45cee5ed40568e92a9fa653f2d6c2",
-                "reference": "3dd9a653b1b45cee5ed40568e92a9fa653f2d6c2",
+                "url": "https://api.github.com/repos/liquiddesign/security/zipball/c0b6666d3c54cceef5cebbe46128cdbe9a3d9a04",
+                "reference": "c0b6666d3c54cceef5cebbe46128cdbe9a3d9a04",
                 "shasum": ""
             },
             "require": {
@@ -1874,9 +1874,9 @@
             "description": "✇ Nadstavba Nette Security rozšířené o databázové služby postavené na StORMu",
             "support": {
                 "issues": "https://github.com/liquiddesign/security/issues",
-                "source": "https://github.com/liquiddesign/security/tree/v1.0.12"
+                "source": "https://github.com/liquiddesign/security/tree/v1.0.13"
             },
-            "time": "2022-06-01T07:31:15+00:00"
+            "time": "2022-11-25T14:23:36+00:00"
         },
         {
             "name": "liquiddesign/storm",

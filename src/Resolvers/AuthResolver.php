@@ -49,7 +49,7 @@ class AuthResolver extends BaseResolver
 				]);
 			}
 
-			return $identity->toArray();
+			return Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.' . BaseType::ID_NAME, $identity->getPK()), $resolveInfo));
 		}
 
 		try {

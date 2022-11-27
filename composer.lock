@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe86133f9cc9974c609db670ac2e568b",
+    "content-hash": "cfbed178a6e09fa827fd8e380faeb4b9",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1830,16 +1830,16 @@
         },
         {
             "name": "liquiddesign/security",
-            "version": "v1.0.12",
+            "version": "v1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liquiddesign/security.git",
-                "reference": "3dd9a653b1b45cee5ed40568e92a9fa653f2d6c2"
+                "reference": "c0b6666d3c54cceef5cebbe46128cdbe9a3d9a04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liquiddesign/security/zipball/3dd9a653b1b45cee5ed40568e92a9fa653f2d6c2",
-                "reference": "3dd9a653b1b45cee5ed40568e92a9fa653f2d6c2",
+                "url": "https://api.github.com/repos/liquiddesign/security/zipball/c0b6666d3c54cceef5cebbe46128cdbe9a3d9a04",
+                "reference": "c0b6666d3c54cceef5cebbe46128cdbe9a3d9a04",
                 "shasum": ""
             },
             "require": {
@@ -1874,9 +1874,9 @@
             "description": "✇ Nadstavba Nette Security rozšířené o databázové služby postavené na StORMu",
             "support": {
                 "issues": "https://github.com/liquiddesign/security/issues",
-                "source": "https://github.com/liquiddesign/security/tree/v1.0.12"
+                "source": "https://github.com/liquiddesign/security/tree/v1.0.13"
             },
-            "time": "2022-06-01T07:31:15+00:00"
+            "time": "2022-11-25T14:23:36+00:00"
         },
         {
             "name": "liquiddesign/storm",
@@ -6027,16 +6027,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.13.0",
+            "version": "1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "33aefcdab42900e36366d0feab6206e2dd68f947"
+                "reference": "aac44118344d197e6d5f7c6cee91885f0a89acdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/33aefcdab42900e36366d0feab6206e2dd68f947",
-                "reference": "33aefcdab42900e36366d0feab6206e2dd68f947",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/aac44118344d197e6d5f7c6cee91885f0a89acdd",
+                "reference": "aac44118344d197e6d5f7c6cee91885f0a89acdd",
                 "shasum": ""
             },
             "require": {
@@ -6066,9 +6066,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.13.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.13.1"
             },
-            "time": "2022-10-21T09:57:39+00:00"
+            "time": "2022-11-20T08:52:26+00:00"
         },
         {
             "name": "phpstan/phpstan",
@@ -6325,5 +6325,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

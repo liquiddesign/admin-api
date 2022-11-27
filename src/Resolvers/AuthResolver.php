@@ -4,12 +4,12 @@ namespace AdminApi\Resolvers;
 
 use Admin\Administrator;
 use Admin\DB\AdministratorRepository;
+use Carbon\Carbon;
 use GraphQL\Type\Definition\ResolveInfo;
 use LqGrAphi\GraphQLContext;
 use LqGrAphi\Resolvers\BaseResolver;
 use LqGrAphi\Resolvers\Exceptions\BadRequestException;
 use LqGrAphi\Resolvers\Exceptions\UnauthorizedException;
-use LqGrAphi\Schema\BaseType;
 use Nette\DI\Container;
 use Nette\Security\AuthenticationException;
 use Nette\Utils\Arrays;
@@ -42,6 +42,12 @@ class AuthResolver extends BaseResolver
 				throw new BadRequestException('Identity not found');
 			}
 
+			if ($account = $identity->getAccount()) {
+				$account->update([
+					'tsLastActivity' => Carbon::now()->toDateTimeString(),
+				]);
+			}
+
 			return $identity->toArray();
 		}
 
@@ -54,11 +60,18 @@ class AuthResolver extends BaseResolver
 			if (!$identity) {
 				throw new BadRequestException('Identity not found');
 			}
+
+			if ($account = $identity->getAccount()) {
+				$account->update([
+					'tsLastLogin' => Carbon::now()->toDateTimeString(),
+					'tsLastActivity' => Carbon::now()->toDateTimeString(),
+				]);
+			}
+
+			return $identity->toArray();
 		} catch (AuthenticationException $e) {
 			throw new UnauthorizedException($e->getMessage());
 		}
-
-		return Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.' . BaseType::ID_NAME, $identity->getPK()), $resolveInfo));
 	}
 
 	/**
@@ -102,6 +115,9 @@ class AuthResolver extends BaseResolver
 			throw new UnauthorizedException('Account is not active');
 		}
 
-		return Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.uuid', $this->admin->getId()), $resolveInfo));
+		$adminArray = Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.uuid', $this->admin->getId()), $resolveInfo));
+		$account->update(['tsLastActivity' => Carbon::now()->toDateTimeString(),]);
+
+		return $adminArray;
 	}
 }

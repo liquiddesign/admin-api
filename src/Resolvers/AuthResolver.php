@@ -10,6 +10,7 @@ use LqGrAphi\GraphQLContext;
 use LqGrAphi\Resolvers\BaseResolver;
 use LqGrAphi\Resolvers\Exceptions\BadRequestException;
 use LqGrAphi\Resolvers\Exceptions\UnauthorizedException;
+use LqGrAphi\Schema\BaseType;
 use Nette\DI\Container;
 use Nette\Security\AuthenticationException;
 use Nette\Utils\Arrays;
@@ -48,7 +49,7 @@ class AuthResolver extends BaseResolver
 				]);
 			}
 
-			return $identity->toArray();
+			return Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.' . BaseType::ID_NAME, $identity->getPK()), $resolveInfo));
 		}
 
 		try {
@@ -71,11 +72,11 @@ class AuthResolver extends BaseResolver
 					'tsLastActivity' => Carbon::now()->toDateTimeString(),
 				]);
 			}
-
-			return $identity->toArray();
 		} catch (AuthenticationException $e) {
 			throw new UnauthorizedException($e->getMessage());
 		}
+
+		return Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.' . BaseType::ID_NAME, $identity->getPK()), $resolveInfo));
 	}
 
 	/**

@@ -2,6 +2,7 @@
 
 namespace AdminApi\Schema\Types;
 
+use GraphQL\Type\Definition\Type;
 use LqGrAphi\Schema\BaseMutation;
 use LqGrAphi\Schema\TypeRegister;
 use Nette\DI\Container;
@@ -19,24 +20,24 @@ class AuthMutation extends BaseMutation
 				"{$resolverName}AdminLogin" => [
 					'type' => $typeRegister->getOutputType('administrator'),
 					'args' => [
-						'login' => $typeRegister::nonNull($typeRegister::string()),
-						'password' => $typeRegister::nonNull($typeRegister::string()),
+						'login' => Type::nonNull(Type::string()),
+						'password' => Type::nonNull(Type::string()),
 					],
 					'description' => 'Returns Administrator if login is successful otherwise null',
 				],
 				"{$resolverName}AdminLogout" => [
-					'type' => $typeRegister::nonNull($typeRegister::boolean()),
+					'type' => Type::nonNull(Type::boolean()),
 				],
 				"{$resolverName}AdminGet2FAQR" => [
-					'type' => $typeRegister::nonNull($typeRegister::boolean()),
-					'description' => 'Generates new QR code to register for 2FA.'
+					'type' => Type::nonNull(Type::boolean()),
+					'description' => '@todo Generates new QR code to register for 2FA.',
 				],
 				"{$resolverName}AdminSet2FAQR" => [
-					'type' => $typeRegister::nonNull($typeRegister::boolean()),
-					'description' => 'Enable 2FA with code generated based on QR code.'
+					'type' => Type::nonNull(Type::boolean()),
+					'description' => '@todo Enable 2FA with code generated based on QR code.',
 				],
 				"{$resolverName}AdminLogout" => [
-					'type' => $typeRegister::nonNull($typeRegister::boolean()),
+					'type' => Type::nonNull(Type::boolean()),
 				],
 			],
 		]);

@@ -61,6 +61,10 @@ class AuthResolver extends BaseResolver
 				throw new BadRequestException('Identity not found');
 			}
 
+			if ($identity->has2FAEnabled()) {
+
+			}
+
 			if ($account = $identity->getAccount()) {
 				$account->update([
 					'tsLastLogin' => Carbon::now()->toDateTimeString(),

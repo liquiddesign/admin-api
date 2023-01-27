@@ -27,6 +27,17 @@ class AuthMutation extends BaseMutation
 				"{$resolverName}AdminLogout" => [
 					'type' => $typeRegister::nonNull($typeRegister::boolean()),
 				],
+				"{$resolverName}AdminGet2FAQR" => [
+					'type' => $typeRegister::nonNull($typeRegister::boolean()),
+					'description' => 'Generates new QR code to register for 2FA.'
+				],
+				"{$resolverName}AdminSet2FAQR" => [
+					'type' => $typeRegister::nonNull($typeRegister::boolean()),
+					'description' => 'Enable 2FA with code generated based on QR code.'
+				],
+				"{$resolverName}AdminLogout" => [
+					'type' => $typeRegister::nonNull($typeRegister::boolean()),
+				],
 			],
 		]);
 	}

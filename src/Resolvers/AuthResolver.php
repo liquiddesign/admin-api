@@ -30,10 +30,10 @@ class AuthResolver extends BaseResolver
 	 * @param array<mixed> $rootValue
 	 * @param array<mixed> $args
 	 * @param \LqGrAphi\GraphQLContext $context
-	 * @param \GraphQL\Type\Definition\ResolveInfo $resolveInfo
+	 * @param \GraphQL\Type\Definition\ResolveInfo|array<mixed> $resolveInfo)
 	 * @return array<mixed>
 	 */
-	public function adminLogin(array $rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): array
+	public function adminLogin(array $rootValue, array $args, GraphQLContext $context, ResolveInfo|array $resolveInfo): array
 	{
 		if ($this->admin->isLoggedIn()) {
 			/** @var \Admin\DB\Administrator|null $identity */
@@ -83,9 +83,9 @@ class AuthResolver extends BaseResolver
 	 * @param array<mixed> $rootValue
 	 * @param array<mixed> $args
 	 * @param \LqGrAphi\GraphQLContext $context
-	 * @param \GraphQL\Type\Definition\ResolveInfo $resolveInfo
+	 * @param \GraphQL\Type\Definition\ResolveInfo|array<mixed> $resolveInfo)
 	 */
-	public function adminLogout(array $rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): bool
+	public function adminLogout(array $rootValue, array $args, GraphQLContext $context, ResolveInfo|array $resolveInfo): bool
 	{
 		if ($this->admin->isLoggedIn()) {
 			$this->admin->logout(true);
@@ -100,10 +100,10 @@ class AuthResolver extends BaseResolver
 	 * @param array<mixed> $rootValue
 	 * @param array<mixed> $args
 	 * @param \LqGrAphi\GraphQLContext $context
-	 * @param \GraphQL\Type\Definition\ResolveInfo $resolveInfo
+	 * @param \GraphQL\Type\Definition\ResolveInfo|array<mixed> $resolveInfo)
 	 * @return array<mixed>
 	 */
-	public function adminIsLogged(array $rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): array
+	public function adminIsLogged(array $rootValue, array $args, GraphQLContext $context, ResolveInfo|array $resolveInfo): array
 	{
 		if (!$this->admin->isLoggedIn()) {
 			throw new UnauthorizedException('Not logged in');

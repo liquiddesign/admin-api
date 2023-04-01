@@ -11,4 +11,14 @@ class AdministratorMutation extends CrudMutation
 	{
 		return Administrator::class;
 	}
+
+	public function getCreateInputName(): string
+	{
+		return 'AdministratorCreateInput';
+	}
+
+	public function getUpdateInputName(): string
+	{
+		return 'AdministratorUpdateInput';
+	}
 }

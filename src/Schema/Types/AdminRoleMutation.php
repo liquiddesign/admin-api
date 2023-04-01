@@ -14,4 +14,14 @@ class AdminRoleMutation extends \LqGrAphi\Schema\CrudMutation
 	{
 		return \Admin\DB\Role::class;
 	}
+
+	public function getCreateInputName(): string
+	{
+		return 'AdminRoleCreateInput';
+	}
+
+	public function getUpdateInputName(): string
+	{
+		return 'AdminRoleUpdateInput';
+	}
 }

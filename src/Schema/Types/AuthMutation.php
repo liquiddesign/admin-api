@@ -36,9 +36,6 @@ class AuthMutation extends BaseMutation
 					'type' => Type::nonNull(Type::boolean()),
 					'description' => '@todo Enable 2FA with code generated based on QR code.',
 				],
-				"{$resolverName}AdminLogout" => [
-					'type' => Type::nonNull(Type::boolean()),
-				],
 			],
 		]);
 	}

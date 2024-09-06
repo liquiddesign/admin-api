@@ -14,14 +14,21 @@ use LqGrAphi\Schema\BaseType;
 use Nette\DI\Container;
 use Nette\Security\AuthenticationException;
 use Nette\Utils\Arrays;
+use StORM\DIConnection;
+use StORM\SchemaManager;
 
 class AuthResolver extends BaseResolver
 {
 	protected readonly Administrator $admin;
 
-	public function __construct(Container $container, private readonly AdministratorRepository $administratorRepository)
-	{
-		parent::__construct($container);
+	public function __construct(
+		Container $container,
+		SchemaManager $schemaManager,
+		DIConnection $connection,
+		/** @var \Admin\DB\AdministratorRepository<\Admin\DB\Administrator> $administratorRepository */
+		private readonly AdministratorRepository $administratorRepository
+	) {
+		parent::__construct($container, $schemaManager, $connection);
 
 		$this->admin = $container->getService('admin.administrator');
 	}
@@ -49,7 +56,10 @@ class AuthResolver extends BaseResolver
 				]);
 			}
 
-			return Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.' . BaseType::ID_NAME, $identity->getPK()), $resolveInfo));
+			/** @var \StORM\Collection<\StORM\Entity> $query */
+			$query = $this->administratorRepository->many()->where('this.' . BaseType::ID_NAME, $identity->getPK());
+
+			return Arrays::first($this->fetchResult($query, $resolveInfo));
 		}
 
 		try {
@@ -62,9 +72,9 @@ class AuthResolver extends BaseResolver
 				throw new BadRequestException('Identity not found');
 			}
 
-			if ($identity->has2FAEnabled()) {
-
-			}
+//			if ($identity->has2FAEnabled()) {
+//
+//			}
 
 			if ($account = $identity->getAccount()) {
 				$account->update([
@@ -76,7 +86,10 @@ class AuthResolver extends BaseResolver
 			throw new UnauthorizedException($e->getMessage());
 		}
 
-		return Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.' . BaseType::ID_NAME, $identity->getPK()), $resolveInfo));
+		/** @var \StORM\Collection<\StORM\Entity> $query */
+		$query = $this->administratorRepository->many()->where('this.' . BaseType::ID_NAME, $identity->getPK());
+
+		return Arrays::first($this->fetchResult($query, $resolveInfo));
 	}
 
 	/**
@@ -120,7 +133,10 @@ class AuthResolver extends BaseResolver
 			throw new UnauthorizedException('Account is not active');
 		}
 
-		$adminArray = Arrays::first($this->fetchResult($this->administratorRepository->many()->where('this.uuid', $this->admin->getId()), $resolveInfo));
+		/** @var \StORM\Collection<\StORM\Entity> $query */
+		$query = $this->administratorRepository->many()->where('this.uuid', $this->admin->getId());
+
+		$adminArray = Arrays::first($this->fetchResult($query, $resolveInfo));
 		$account->update(['tsLastActivity' => Carbon::now()->toDateTimeString(),]);
 
 		return $adminArray;
